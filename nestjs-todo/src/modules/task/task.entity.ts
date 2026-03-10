@@ -8,14 +8,14 @@ export class Task {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
-  description: string;
+  @Column({ type: 'text', nullable: true })
+  description: string | null;
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
   @Column({ type: 'datetime', nullable: true })
-  completedAt: Date;
+  completedAt: Date | null;
 
   @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'CASCADE' })
   user: User;

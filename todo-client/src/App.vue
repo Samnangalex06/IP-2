@@ -11,7 +11,7 @@
         >You have <span class="pending-num"> {{ nbOfTodo }} </span> tasks
         pending.</span
       >
-      <button class="clear-button">Clear All</button>
+      <button class="clear-button" @click="clearAllTodos">Clear All</button>
     </div>
   </div>
 </template>

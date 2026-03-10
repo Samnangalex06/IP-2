@@ -8,28 +8,39 @@ import {
   Post,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly taskService: TaskService) {}
 
+  @Get('/')
+  getAllTasks() {
+    return this.taskService.getAllTasks();
+  }
+
   @Get('/:id')
   getTask(@Param('id') id: string) {
     return this.taskService.getTask(id);
   }
+
   @Post('/')
-  createTask(@Body() body: any) {
-    return this.taskService.createTask(body);
+  createTask(@Body() createTaskDto: CreateTaskDto) {
+    return this.taskService.createTask(createTaskDto);
   }
 
   @Patch('/:id/done')
-  markTaskAsDone(@Body() body: any, @Param('id') id: string) {
-    return this.taskService.updateTask(id, body);
+  markTaskAsDone(@Param('id') id: string) {
+    return this.taskService.updateTask(id, {
+      completedAt: new Date(),
+    });
   }
 
   @Patch('/:id/pending')
-  markTaskAsPending(@Body() body: any, @Param('id') id: string) {
-    return this.taskService.updateTask(id, body);
+  markTaskAsPending(@Param('id') id: string) {
+    return this.taskService.updateTask(id, {
+      completedAt: null,
+    });
   }
 
   @Delete('/:id')

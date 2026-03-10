@@ -139,9 +139,7 @@ textarea::-webkit-scrollbar {
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
-  pointer-events: none;
   white-space: nowrap;
-  cursor: pointer;
 }
 .clear-button:hover {
   background-color: #0e4bf1;
